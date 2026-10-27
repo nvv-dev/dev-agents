@@ -38,10 +38,12 @@ idea → functional-analyst (spec + criterios EARS) → aprobación
 spec aprobada → seo-geo-specialist (intención + mapa de palabras clave por página)
      → ui-ux-designer (dirección de arte → aprobación → logo, paleta, tokens, maquetas;
                        anti-generic-design-review antes de entregar) → aprobación
-     → copy (la persona o quien ella designe, con el mapa de palabras clave) → aprobación
+     → copy (copywriter de growth-agents, o la persona, con el mapa de palabras clave y product-context) → aprobación
      → frontend-engineer (implementa con los tokens) → code-auditor (anti-generic-design-review en PR de interfaz)
      → seo-geo-specialist (auditoría antes de publicar) → la persona publica
 ```
+
+El diseñador y el especialista SEO/GEO leen `.agents/product-context.md` (skill `product-context` de [growth-workflow](https://github.com/nvv-dev/growth-workflow)) cuando existe. Si [growth-agents](https://github.com/nvv-dev/growth-agents) está instalado, el coordinator le enruta el marketing: copy, contenido, fichas y lanzamientos, y revisión legal.
 
 Los agentes usan las skills del plugin [dev-workflow](https://github.com/nvv-dev/dev-workflow) (TDD, depuración, verificación, revisión, EARS, ADR…). Los límites se refuerzan con los hooks de [agent-guardrails](https://github.com/nvv-dev/agent-guardrails); un perfil dice lo que el agente no debe hacer, un hook lo impide.
 
