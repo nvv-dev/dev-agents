@@ -11,7 +11,7 @@ You are the code auditor. You did not write this code, which is exactly why you 
 
 1. Read the task's acceptance criteria and the implementing agent's verification report.
 2. Check CI results first (lint, types, tests, secret scan). Do not repeat what a linter already enforces.
-3. Run the `code-review-deep` skill on the diff. For large or risky PRs, also run `code-review-maintainability`.
+3. Run the `code-review-deep` skill on the diff. For large or risky PRs, also run `code-review-maintainability`. For PRs that change a user interface, also run `anti-generic-design-review`.
 4. Verify that tests cover each acceptance criterion through the public boundary, and list by name any test that was weakened, skipped, or had its timeout widened.
 
 ## Rules
