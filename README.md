@@ -20,6 +20,8 @@ Un equipo de desarrollo pequeño como subagentes de Claude Code. Cada agente tie
 | [ios-engineer](agents/ios-engineer.md) | Apps iOS en Swift, pruebas con xcodebuild | Sonnet | Sí | Subir a App Store |
 | [data-engineer](agents/data-engineer.md) | Esquemas, migraciones e índices | Sonnet | Migraciones | Ejecutar SQL destructivo |
 | [infrastructure-engineer](agents/infrastructure-engineer.md) | Infraestructura como código y CI/CD | Sonnet | IaC | Aplicar sin plan y aprobación |
+| [ui-ux-designer](agents/ui-ux-designer.md) | Identidad visual y experiencia antes del desarrollo: dirección de arte, logo, paleta AA, tipografía, tokens y maquetas HTML | Sonnet | Maquetas y tokens, no código de producción | Publicar, cambiar la marca sin aprobación |
+| [seo-geo-specialist](agents/seo-geo-specialist.md) | Intención de búsqueda, mapa de palabras clave, SEO local, contenido citable por IA, datos estructurados, auditoría y reporte mensual | Sonnet | Solo por PR | Comprar enlaces, inventar volúmenes de búsqueda |
 
 ## Flujo de una funcionalidad
 
@@ -28,6 +30,17 @@ idea → functional-analyst (spec + criterios EARS) → aprobación
      → tech-lead (plan + ADR) + security-reviewer (amenazas) → aprobación
      → coordinator (tareas) → agentes de área (en worktrees separados)
      → code-auditor + security-reviewer + qa-engineer → la persona hace merge
+```
+
+## Flujo de un sitio o landing
+
+```text
+spec aprobada → seo-geo-specialist (intención + mapa de palabras clave por página)
+     → ui-ux-designer (dirección de arte → aprobación → logo, paleta, tokens, maquetas;
+                       anti-generic-design-review antes de entregar) → aprobación
+     → copy (la persona o quien ella designe, con el mapa de palabras clave) → aprobación
+     → frontend-engineer (implementa con los tokens) → code-auditor (anti-generic-design-review en PR de interfaz)
+     → seo-geo-specialist (auditoría antes de publicar) → la persona publica
 ```
 
 Los agentes usan las skills del plugin [dev-workflow](https://github.com/nvv-dev/dev-workflow) (TDD, depuración, verificación, revisión, EARS, ADR…). Los límites se refuerzan con los hooks de [agent-guardrails](https://github.com/nvv-dev/agent-guardrails); un perfil dice lo que el agente no debe hacer, un hook lo impide.
@@ -48,7 +61,7 @@ O copia los archivos de `agents/` que quieras a `.claude/agents/` en tu repo y a
 - **Stack:** los agentes de área nombran un stack por defecto (por ejemplo JVM para backend). Edita el perfil con el de tu equipo.
 - **Modelo:** Sonnet por defecto, Opus solo para el tech-lead. Cámbialo en el campo `model` según tu plan.
 - **Herramientas:** el auditor y el revisor de seguridad no tienen `Write` ni `Edit` a propósito. No se los agregues.
-- **Activación por oleadas:** no actives los doce desde el primer día. Empieza con coordinator, code-auditor y el agente de tu stack principal, y agrega los demás cuando haya trabajo real para ellos.
+- **Activación por oleadas:** no actives los catorce desde el primer día. Empieza con coordinator, code-auditor y el agente de tu stack principal, y agrega los demás cuando haya trabajo real para ellos.
 
 ## Licencia
 
@@ -60,4 +73,4 @@ MIT. Ver [CREDITS.md](CREDITS.md).
 
 A small software team as Claude Code subagents. Each agent has one responsibility, the tools it needs, and written limits on what it must **not** do. One human owner approves everything that reaches production, costs money or goes to third parties.
 
-Install with `/plugin marketplace add nvv-dev/claude-plugins` and `/plugin install dev-agents@nvvdev` (together with `dev-workflow` and `agent-guardrails`), or copy the files in `agents/` into your repo's `.claude/agents/` and adapt the stack, model and tools. Reviewers (code-auditor, security-reviewer) intentionally have no write tools. Roll agents out in waves, only when there is real work for them. License: MIT.
+Install with `/plugin marketplace add nvv-dev/claude-plugins` and `/plugin install dev-agents@nvvdev` (together with `dev-workflow` and `agent-guardrails`), or copy the files in `agents/` into your repo's `.claude/agents/` and adapt the stack, model and tools. Reviewers (code-auditor, security-reviewer) intentionally have no write tools. The ui-ux-designer and seo-geo-specialist cover public sites: keyword map, then design, copy, implementation and a pre-publication SEO/GEO audit. Roll agents out in waves, only when there is real work for them. License: MIT.
