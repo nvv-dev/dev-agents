@@ -1,6 +1,6 @@
 {
   "name": "dev-agents",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A small software team as Claude Code subagents: coordinator, functional analyst, tech lead, code auditor, QA, security reviewer, and backend, frontend, Android, iOS, data and infrastructure engineers, UI/UX designer and SEO/GEO specialist — each with explicit responsibilities, tools and limits. Pairs with the dev-workflow skills.",
   "author": {
     "name": "nvvdev",
