@@ -1,0 +1,18 @@
+# SkillSpector baseline — findings listed here are suppressed on future scans.
+# Edit 'reason' fields and add glob 'rules' as needed. See docs/SUPPRESSION.md.
+version: 2
+scanner_version: 2.12.0
+rules: []
+fingerprints:
+- hash: sha256:d5c1205e8e8b41656ed697fbcccb676066e1e5269e411501934cdb822ccf8d33
+  rule_id: EA2
+  file: functional-analyst.md
+  reason: "Line 21 says criteria must be testable by QA without asking the author: it describes how criteria are written, not an agent acting without asking"
+- hash: sha256:b05139f96e66b60d47b80e0a6eedae011ddbfaf38dda02cf2a26130279e142d8
+  rule_id: EA2
+  file: infrastructure-engineer.md
+  reason: "Line 28 lists -auto-approve among actions forbidden without explicit approval: a prohibition, the agent never runs it"
+- hash: sha256:f78da47c7c83a5a47078180986f5fac5a57083e60b4cc9e48b4feab85b9b3568
+  rule_id: YR4
+  file: security-reviewer.md
+  reason: "Line 32 'Do not disable security checks to unblock a release' is a prohibition; the YARA rule matches the word pair across the frontmatter, nothing hides or disables a control"
